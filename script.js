@@ -1,13 +1,11 @@
 var Module = {
     onRuntimeInitialized: function() {
         console.log("WASM Loaded!");
-        document.getElementById("runButton").disabled = false; // 実行ボタンを有効化
+        document.getElementById("runButton").disabled = false; // ボタンを有効化
     }
 };
 
-function sendInput() {
-    var input = document.getElementById("userInput").value;
-    if (input) {
-        Module.ccall('main', 'number', ['string'], [input]);
-    }
+function runCCode() {
+    console.log("Running C program...");
+    Module._main(); // C のメイン関数を実行
 }
