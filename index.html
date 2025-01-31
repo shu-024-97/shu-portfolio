@@ -50,7 +50,14 @@
             }
         };
     </script>
+    <script src="program.js"></script> 
+    <script>
+    Module.onRuntimeInitialized = function() {
+        console.log("WASM Loaded!");
+        document.getElementById("runButton").disabled = false;
+    };
+    </script>
     <script src="script.js"></script>
-    <script src="program.js"></script>    
+
 </body>
 </html>
