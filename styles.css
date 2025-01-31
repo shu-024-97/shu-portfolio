@@ -104,9 +104,10 @@ body {
 
 .about-text {
     text-align: center;
-    color: white; /* 文字を白に */
-    text-shadow: 2px 2px 4px black; /* 黒の影をつけて視認性UP */
-    background: rgba(0, 0, 0, 0.3); /* ほんのり黒背景 */
+    color: white; /* 純粋な白文字 */
+    background: none; /* 黒のモヤを消す */
+    font-weight: bold; /* 太字で読みやすく */
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8); /* ほんのり光らせて未来感UP */
     padding: 20px;
     border-radius: 10px;
     display: inline-block;
