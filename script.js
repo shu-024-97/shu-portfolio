@@ -1,14 +1,15 @@
 var outputElement = document.getElementById("output");
+var runButton = document.getElementById("runButton");
 
 var Module = {
     onRuntimeInitialized: function() {
         console.log("WASM Loaded!");
-        document.getElementById("runButton").disabled = false; // ボタンを有効化
+        runButton.disabled = false; // WASM がロードされたらボタンを有効化
     },
 
     print: function(text) {
-        console.log(text); // C の出力をコンソールにも表示
-        outputElement.textContent += text + "\n"; // HTML にも出力
+        console.log(text); // C の出力をコンソールに表示
+        outputElement.textContent += text + "\n"; // HTML にも表示
     },
 
     printErr: function(text) {
@@ -16,7 +17,7 @@ var Module = {
     },
 
     stdin: function() {
-        return null; // `scanf()` の入力を無効化（ポップアップを防ぐ）
+        return null; // `scanf()` の入力を無効化（ポップアップ防止）
     }
 };
 
