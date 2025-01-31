@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- ヘッダー -->
     <header id="banner">
         <h1 class="neon-banner">Welcome to my portfolio</h1>
     </header>
@@ -21,16 +22,17 @@
                 <h3>User Management System (C Project)</h3>
                 <p>This is a simple menu-driven user management system written in C. It allows user creation, modification, deletion, and group assignments.</p>
                 <p>Check out the full code on <a href="https://github.com/shu-024-97/UserManagementSystem" target="_blank">GitHub</a></p>
+
                 <h3>Run C Code in Browser</h3>
-                <button id="runButton" onclick="runCCode()" disabled>Run C Code</button>
+                <button id="runButton" disabled>Run C Code</button> <!-- 初期状態は無効 -->
                 <pre id="output"></pre>
-                
-          
             </div>
+
             <!-- 他のプロジェクトを追加できる -->
         </section>
     </main>
 
+    <!-- 自己紹介 -->
     <section id="about">
         <div class="about-container">
             <img src="profile.jpeg" alt="Your Profile Picture" class="profile-pic">
@@ -44,22 +46,8 @@
         </div>
     </section>
 
-    <script>
-        var Module = {
-            onRuntimeInitialized: function() {
-                console.log("WASM Loaded!");
-                document.getElementById("runButton").disabled = false;
-            }
-        };
-    </script>
-    <script src="program.js"></script> 
-    <script>
-    Module.onRuntimeInitialized = function() {
-        console.log("WASM Loaded!");
-        document.getElementById("runButton").disabled = false;
-    };
-    </script>
-    <script src="script.js"></script>
-
+    <!-- スクリプトの読み込み順を修正 -->
+    <script src="program.js"></script>  <!-- WASM を最初にロード -->
+    <script src="script.js"></script>   <!-- スクリプトを後でロード -->
 </body>
 </html>

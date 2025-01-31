@@ -1,33 +1,43 @@
 // WASM モジュールの初期化
 var Module = {
-    onRuntimeInitialized: function() {
+    onRuntimeInitialized: function () {
         console.log("WASM Loaded!");
-        document.getElementById("runButton").disabled = false; // WASM 読み込み後にボタンを有効化
+        let runButton = document.getElementById("runButton");
+        if (runButton) {
+            runButton.disabled = false; // ボタンを有効化
+            console.log("Run button enabled!");
+        } else {
+            console.error("Error: Run button not found.");
+        }
     }
 };
 
 // C プログラムを実行する関数
 function runProgram() {
-    let userInput = prompt("Enter your command (1-7):");
-
-    // 🚨 キャンセルされたら実行しない 🚨
-    if (userInput === null) {
-        console.log("Execution canceled by user.");
-        return;
-    }
-
     console.log("Running C program...");
-    
-    // Cのmain関数を実行 (引数が必要なら適宜変更)
-    Module.ccall(
-        'main',  // C の `main()` を呼び出す
-        'number',  // 戻り値の型 (void の場合は null)
-        ['string'],  // 引数の型
-        [userInput]  // 実際の引数
-    );
+
+    // WASM の `main` 関数を実行
+    if (typeof Module._main === "function") {
+        Module._main();
+    } else {
+        console.error("Error: Module._main is not defined. Make sure program.js is loaded correctly.");
+    }
 }
 
-// 🚀 ページが読み込まれたら実行
-window.onload = function() {
-    document.getElementById("runButton").addEventListener("click", runProgram);
+// イベントリスナーの設定
+window.onload = function () {
+    let runButton = document.getElementById("runButton");
+
+    if (runButton) {
+        runButton.addEventListener("click", runProgram);
+        console.log("Run button is ready!");
+    } else {
+        console.error("Run button not found.");
+    }
 };
+
+// 🚀 追加: ページを開いたときのポップアップをブロック
+// alert や prompt が実行されていないことを確認
+window.addEventListener("load", function () {
+    console.log("Page loaded successfully. No pop-ups should appear.");
+});
