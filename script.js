@@ -2,30 +2,34 @@ var outputElement = document.getElementById("output");
 var runButton = document.getElementById("runButton");
 
 // WASM モジュールを明示的にロード
-var Module = {
-    onRuntimeInitialized: function() {
-        console.log("WASM Loaded!");
-        runButton.disabled = false; // WASM がロードされたらボタンを有効化
-    },
+if (!window.Module) {
+    var Module = {
+        onRuntimeInitialized: function() {
+            console.log("WASM Loaded!");
+            document.getElementById("runButton").disabled = false; // ボタンを有効化
+        },
+        print: function(text) {
+            console.log(text);
+            document.getElementById("output").textContent += text + "\n";
+        },
+        printErr: function(text) {
+            console.error(text);
+        }
+    };
+}
 
-    print: function(text) {
-        console.log(text); // C の出力をコンソールに表示
-        outputElement.textContent += text + "\n"; // HTML にも表示
-    },
-
-    printErr: function(text) {
-        console.error(text);
-    }
-};
 
 // WebAssembly をロード
 fetch("program.wasm")
     .then(response => response.arrayBuffer())
-    .then(buffer => WebAssembly.instantiate(buffer, { env: {} }))
-    .then(module => {
-        Module.instance = module.instance;
+    .then(bytes => WebAssembly.instantiate(bytes, {
+        env: {}, // 必要なら関数を追加
+        wasi_snapshot_preview1: {} // ここを追加
+    }))
+    .then(results => {
+        Module.instance = results.instance;
         console.log("WASM Ready!");
-        runButton.disabled = false; // ボタンを有効化
+        document.getElementById("runButton").disabled = false;
     })
     .catch(error => console.error("Error loading WASM:", error));
 
