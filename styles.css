@@ -102,11 +102,13 @@ body {
     100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.9); }
 }
 
-/* 自己紹介テキストの視認性を向上 */
 .about-text {
     text-align: center;
-    background: rgba(0, 0, 0, 0.5); /* 半透明の黒背景で視認性UP */
+    color: white; /* 文字を白に */
+    text-shadow: 2px 2px 4px black; /* 黒の影をつけて視認性UP */
+    background: rgba(0, 0, 0, 0.3); /* ほんのり黒背景 */
     padding: 20px;
     border-radius: 10px;
     display: inline-block;
 }
+
