@@ -58,3 +58,62 @@ header {
 .btn:hover {
     background-color: #005bb5;
 }
+/* 未来的な背景 */
+body {
+    background: linear-gradient(135deg, #5a00ff, #1b1bff, #00d4ff);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    font-family: 'Orbitron', sans-serif; /* 未来的なフォント */
+    color: white;
+}
+
+/* 背景をアニメーションさせる */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+/* 未来的な自己紹介ボックス */
+.about-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 800px;
+    margin: auto;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* ホバーしたときに浮き上がるアニメーション */
+.about-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+/* 未来的なボタン */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    color: white;
+    background: linear-gradient(90deg, #ff00ff, #5a00ff, #1b1bff, #00d4ff);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: glow 1.5s infinite alternate;
+}
+
+/* ホバー時のエフェクト */
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+/* ボタンのネオン発光 */
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+    100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.9); }
+}
