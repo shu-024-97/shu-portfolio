@@ -1,43 +1,33 @@
-// WASM モジュールの初期化
-var Module = {
-    onRuntimeInitialized: function () {
-        console.log("WASM Loaded!");
-        let runButton = document.getElementById("runButton");
-        if (runButton) {
-            runButton.disabled = false; // ボタンを有効化
-            console.log("Run button enabled!");
-        } else {
-            console.error("Error: Run button not found.");
-        }
-    }
-};
-
-// C プログラムを実行する関数
-function runProgram() {
-    console.log("Running C program...");
-
-    // WASM の `main` 関数を実行
-    if (typeof Module._main === "function") {
-        Module._main();
-    } else {
-        console.error("Error: Module._main is not defined. Make sure program.js is loaded correctly.");
-    }
-}
-
-// イベントリスナーの設定
-window.onload = function () {
-    let runButton = document.getElementById("runButton");
-
-    if (runButton) {
-        runButton.addEventListener("click", runProgram);
-        console.log("Run button is ready!");
-    } else {
-        console.error("Run button not found.");
-    }
-};
-
-// 🚀 追加: ページを開いたときのポップアップをブロック
-// alert や prompt が実行されていないことを確認
-window.addEventListener("load", function () {
+document.addEventListener("DOMContentLoaded", function () {
     console.log("Page loaded successfully. No pop-ups should appear.");
+
+    // ボタン要素取得
+    const runButton = document.getElementById("runButton");
+
+    // ボタンの初期状態は無効
+    runButton.disabled = true;
+
+    // WASM モジュールのロードが完了したら実行
+    if (typeof Module !== "undefined") {
+        Module.onRuntimeInitialized = function () {
+            console.log("WASM Loaded!");
+            runButton.disabled = false; // ボタンを有効化
+        };
+    } else {
+        console.error("Module is undefined. WASM might not be loaded properly.");
+    }
+
+    // ボタンが押された時の動作
+    runButton.addEventListener("click", function () {
+        console.log("Running C program...");
+        if (typeof Module !== "undefined" && typeof Module._main === "function") {
+            try {
+                Module._main();
+            } catch (error) {
+                console.error("Error running C program:", error);
+            }
+        } else {
+            console.error("Module._main is not defined. Check WASM initialization.");
+        }
+    });
 });
