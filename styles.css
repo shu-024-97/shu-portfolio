@@ -113,3 +113,30 @@ body {
     display: inline-block;
 }
 
+/* note ボタン */
+.note-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    color: white;
+    background: linear-gradient(90deg, #ffcc00, #ff8800, #ff5500);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+    animation: glowNote 1.5s infinite alternate;
+    margin-bottom: 10px; /* GitHubボタンとの間にスペース */
+}
+
+/* note ボタンのホバーエフェクト */
+.note-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+}
+
+/* ボタンのネオン発光 */
+@keyframes glowNote {
+    0% { box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
+    100% { box-shadow: 0 0 20px rgba(255, 204, 0, 0.9); }
+}
