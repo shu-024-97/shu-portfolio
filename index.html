@@ -21,23 +21,13 @@
                 <h3>User Management System (C Project)</h3>
                 <p>This is a simple menu-driven user management system written in C. It allows user creation, modification, deletion, and group assignments.</p>
                 <p>Check out the full code on <a href="https://github.com/shu-024-97/UserManagementSystem" target="_blank">GitHub</a></p>
+                
                 <h3>Run C Code in Browser</h3>
-<button onclick="Module._main()">Run C Code</button>
-<pre id="output"></pre>
-
-<script>
-var Module = {
-    onRuntimeInitialized: function() {
-        console.log("WASM Loaded!");
-    }
-};
-</script>
-<script src="program.js"></script>
-
+                <input type="text" id="userInput" placeholder="Enter input here">
+                <button id="runButton" onclick="sendInput()" disabled>Run C Code</button>
+                <pre id="output"></pre>
             </div>
-
             <!-- 他のプロジェクトを追加できる -->
-            <!-- 例: Python, JavaScript, Web開発など -->
         </section>
     </main>
 
@@ -53,5 +43,16 @@ var Module = {
             </div>
         </div>
     </section>
+
+    <script>
+        var Module = {
+            onRuntimeInitialized: function() {
+                console.log("WASM Loaded!");
+                document.getElementById("runButton").disabled = false;
+            }
+        };
+    </script>
+    <script src="script.js"></script>
+    <script src="program.js"></script>
 </body>
 </html>
