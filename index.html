@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- ヘッダー -->
     <header id="banner">
         <h1 class="neon-banner">Welcome to my portfolio</h1>
     </header>
@@ -22,17 +20,14 @@
                 <h3>User Management System (C Project)</h3>
                 <p>This is a simple menu-driven user management system written in C. It allows user creation, modification, deletion, and group assignments.</p>
                 <p>Check out the full code on <a href="https://github.com/shu-024-97/UserManagementSystem" target="_blank">GitHub</a></p>
-
+                
                 <h3>Run C Code in Browser</h3>
-                <button id="runButton" disabled>Run C Code</button> <!-- 初期状態は無効 -->
-                <pre id="output"></pre>
+                <!-- Replit埋め込み -->
+                <iframe height="500px" width="100%" src="https://replit.com/@shu0241997/UserManagementSystem?lite=true" frameborder="0"></iframe>
             </div>
-
-            <!-- 他のプロジェクトを追加できる -->
         </section>
     </main>
 
-    <!-- 自己紹介 -->
     <section id="about">
         <div class="about-container">
             <img src="profile.jpeg" alt="Your Profile Picture" class="profile-pic">
@@ -45,9 +40,5 @@
             </div>
         </div>
     </section>
-
-    <!-- スクリプトの読み込み順を修正 -->
-    <script src="program.js" defer></script>
-    <script src="script.js" defer></script>    
 </body>
 </html>
